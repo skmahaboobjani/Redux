@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+
+
 import './App.css';
+import {Routes,Route} from "react-router-dom";
+// import About from './components/About';
+import Home from './components/Home';
+import Contact from './components/Contact';
+import Navbar from "./components/Navbar";
+import { useSelector } from "react-redux";
+import Service from './components/Service';
+
 
 function App() {
+  const isLight = useSelector((state) => state.isLight)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={isLight?"light":"dark"}>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={ <Home />}/>
+       
+        <Route path='/contact' element={ <Contact />}/>
+        <Route path='/service' element={ <Service />}/>
+       
+      </Routes>
     </div>
   );
 }
